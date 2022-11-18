@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class EditContentButton extends StatelessWidget {
   const EditContentButton({
@@ -29,7 +29,7 @@ class EditContentButton extends StatelessWidget {
           onPressed: disabled ? null : onPressed,
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.transparent),
-            overlayColor: MaterialStateProperty.all(disabled ? Colors.transparent : Palette.fgDark.primary),
+            overlayColor: MaterialStateProperty.all(disabled ? Colors.transparent : AppTheme.of(context).palette.foreground.tertiary),
             shape: MaterialStateProperty.all(const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             )),
@@ -40,8 +40,8 @@ class EditContentButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 disabled 
-                  ? Icon(Icons.lock, color: Palette.fgMid.primary)
-                  : Icon(Icons.edit_rounded, color: Palette.fgMid.primary),
+                  ? Icon(Icons.lock, color: AppTheme.of(context).palette.foreground.secondary)
+                  : Icon(Icons.edit_rounded, color: AppTheme.of(context).palette.foreground.secondary),
                 const SizedBox(width: Constants.s12),
                 Expanded(
                   child: Column(
@@ -55,7 +55,7 @@ class EditContentButton extends StatelessWidget {
                             if (!nullable) TextSpan(
                               text: " *", 
                               style: Theme.of(context).textTheme.bodySmall!
-                                .apply(color: Palette.roseRed.primary)
+                                .apply(color: AppTheme.of(context).palette.custom.roseRed.primary)
                             ),
                           ]
                         )
@@ -65,11 +65,11 @@ class EditContentButton extends StatelessWidget {
                       ? Text(
                         content!, 
                         style: disabled 
-                          ? Theme.of(context).textTheme.bodyLarge!.copyWith(color: Palette.fgMid.primary)
+                          ? Theme.of(context).textTheme.bodyLarge!.copyWith(color: AppTheme.of(context).palette.foreground.secondary)
                           : Theme.of(context).textTheme.bodyLarge,
                       )
                       : Text("Not set", style: 
-                          Theme.of(context).textTheme.bodyLarge!.apply(color: Palette.fgMid.primary)
+                          Theme.of(context).textTheme.bodyLarge!.apply(color: AppTheme.of(context).palette.foreground.secondary)
                         ),
                     ],
                   ),

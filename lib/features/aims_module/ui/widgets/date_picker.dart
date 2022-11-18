@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
 import 'package:todoms/shared/utils/constants/date_time.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class DatePicker extends StatefulWidget {
   const DatePicker({
@@ -82,7 +82,7 @@ class _DatePickerState extends State<DatePicker> {
                 onTap: prevMonth,
                 child: Icon(
                   Icons.keyboard_arrow_left_rounded, 
-                  color: Palette.fgMid.primary
+                  color: AppTheme.of(context).palette.foreground.secondary
                 ),
               ),
               Expanded(
@@ -99,7 +99,7 @@ class _DatePickerState extends State<DatePicker> {
                 onTap: nextMonth,
                 child: Icon(
                   Icons.keyboard_arrow_right_rounded, 
-                  color: Palette.fgMid.primary
+                  color: AppTheme.of(context).palette.foreground.secondary
                 ),
               ),
               const SizedBox(width: Constants.s16),
@@ -175,7 +175,7 @@ class DayCell extends StatelessWidget {
         width: 8,
         height: 8,
         decoration: BoxDecoration(
-          color: Palette.fgDark.primary,
+          color: AppTheme.of(context).palette.foreground.tertiary,
           shape: BoxShape.circle,
         ),
       ) : Container(
@@ -183,16 +183,16 @@ class DayCell extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: selected ? Palette.merigold.primary : Colors.transparent,
+          color: selected ? AppTheme.of(context).palette.custom.merigold.primary : Colors.transparent,
         ),
         alignment: Alignment.center,
         child: Text("$day", style: TextStyle(
             fontSize: 16,
             color: selected 
-              ? Palette.fgLight.primary 
+              ? AppTheme.of(context).palette.foreground.primary 
               : marked 
-                ? Palette.merigold.primary 
-                : Palette.fgLight.primary,
+                ? AppTheme.of(context).palette.custom.merigold.primary 
+                : AppTheme.of(context).palette.foreground.primary,
           )),
       ),
     );

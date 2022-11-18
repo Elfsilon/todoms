@@ -3,7 +3,7 @@ import 'package:todoms/features/aims_module/models/aim.dart';
 import 'package:todoms/features/aims_module/ui/widgets/issue_widget.dart';
 import 'package:todoms/features/aims_module/ui/widgets/label.dart';
 import 'package:todoms/features/aims_module/ui/widgets/subissue_widget.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class AimWidget extends StatefulWidget {
   const AimWidget({
@@ -52,9 +52,9 @@ class _AimWidgetState extends State<AimWidget> {
               Label(
                 title: "${widget.aim.progress}%",
                 color: widget.aim.progress < 40 
-                  ? Palette.crimsone 
+                  ? AppTheme.of(context).palette.custom.crimsone 
                   : widget.aim.progress < 80 
-                    ? Palette.merigold
+                    ? AppTheme.of(context).palette.custom.merigold
                     : widget.aim.category.color,
               ),
               Label(

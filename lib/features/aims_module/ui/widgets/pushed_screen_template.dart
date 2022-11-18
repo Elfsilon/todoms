@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/widgets/custom_appbar.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class PushedScreenTemplate extends StatelessWidget {
   const PushedScreenTemplate({
@@ -22,7 +22,7 @@ class PushedScreenTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.bgDark.primary,
+      backgroundColor: AppTheme.of(context).palette.background.primary,
       appBar: CustomAppBar(
         height: Constants.appBarHeight, 
         title: title,
@@ -33,7 +33,7 @@ class PushedScreenTemplate extends StatelessWidget {
             child: Icon(
               Icons.close, 
               size: Constants.s32, 
-              color: Palette.fgMid.primary
+              color: AppTheme.of(context).palette.foreground.secondary
             ),
           ),
         ) 

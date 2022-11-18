@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/widgets/choise_dialog/chiose_dialog.dart';
 import 'package:todoms/features/aims_module/ui/widgets/choise_dialog/types.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 const defaultPriorities = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -60,11 +60,11 @@ class _Cell extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(Constants.s16),
       decoration: BoxDecoration(
-        color: selected ? Palette.merigold.muted : null,
+        color: selected ? AppTheme.of(context).palette.custom.merigold.muted : null,
       ),
       child: Center(
         child: Text(value.toString(), style: TextStyle(
-          color: selected ? Palette.merigold.primary : Palette.fgMid.primary,
+          color: selected ? AppTheme.of(context).palette.custom.merigold.primary : AppTheme.of(context).palette.foreground.secondary,
         )),
       ),
     );

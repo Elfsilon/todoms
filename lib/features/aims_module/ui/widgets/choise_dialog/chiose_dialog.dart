@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/widgets/choise_dialog/types.dart';
 import 'package:todoms/features/aims_module/ui/widgets/edit_dialog/edit_dialog.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 void showChoiseDialog<T>(BuildContext context, {
   required String label,
@@ -86,7 +86,7 @@ class _ChoiseDialogDialogState<T> extends State<ChoiseDialog<T>> {
         width: double.infinity,
         height: 160,
         decoration: BoxDecoration(
-          color: Palette.bgDark.primary,
+          color: AppTheme.of(context).palette.background.primary,
           borderRadius: Constants.borderRadius12,
         ),
         child: GridView.count(

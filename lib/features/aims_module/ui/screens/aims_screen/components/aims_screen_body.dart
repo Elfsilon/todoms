@@ -3,7 +3,7 @@ import 'package:todoms/features/aims_module/models/aim.dart';
 import 'package:todoms/features/aims_module/ui/screens/aims_screen/aims_screen.dart';
 import 'package:todoms/features/aims_module/ui/screens/aims_screen/components/aim_group.dart';
 import 'package:todoms/features/aims_module/ui/widgets/label.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class AimsScreenBody extends StatelessWidget {
   const AimsScreenBody({
@@ -37,7 +37,7 @@ class AimsScreenBody extends StatelessWidget {
     if (loading) {
       return Center(
         child: CircularProgressIndicator(
-          color: Palette.merigold.primary,
+          color: AppTheme.of(context).palette.custom.merigold.primary,
         ),
       );
     } else if (data.items.isEmpty) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class WithProgressBar extends StatelessWidget {
   const WithProgressBar({

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/widgets/custom_appbar.dart';
 import 'package:todoms/features/aims_module/ui/widgets/label.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class AimsScreenAppBar extends StatelessWidget {
   const AimsScreenAppBar({
@@ -22,14 +22,14 @@ class AimsScreenAppBar extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: showCompleted 
-          ? const Label(
+          ? Label(
             prefixIcon: Icons.history_rounded,
-            color: Palette.flameOrange,
+            color: AppTheme.of(context).palette.custom.flameOrange,
             size: LabelSize.large,
           ) 
-          : const Label(
+          : Label(
             prefixIcon: Icons.today_rounded,
-            color: Palette.merigold,
+            color: AppTheme.of(context).palette.custom.merigold,
             size: LabelSize.large,
           ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({
@@ -13,7 +13,7 @@ class CustomBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Palette.bgMid.primary
+        color: AppTheme.of(context).palette.background.secondary
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

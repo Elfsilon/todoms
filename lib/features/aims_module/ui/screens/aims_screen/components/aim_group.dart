@@ -3,8 +3,8 @@ import 'package:todoms/features/aims_module/models/aim.dart';
 import 'package:todoms/features/aims_module/ui/screens/aims_screen/components/aim_widget.dart';
 import 'package:todoms/features/aims_module/ui/widgets/group_title.dart';
 import 'package:todoms/features/aims_module/ui/widgets/progress_bar.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 import 'package:todoms/shared/utils/get_progress_color.dart';
 
 class AimGroup extends StatefulWidget {
@@ -73,7 +73,7 @@ class _AimGroupState extends State<AimGroup> {
                     child: Icon(
                       expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded, 
                       size: Constants.s20, 
-                      color: Palette.fgMid.primary
+                      color: AppTheme.of(context).palette.foreground.secondary
                     ),
                   ),
                 ),
@@ -84,7 +84,7 @@ class _AimGroupState extends State<AimGroup> {
               child: ProgressBar(
                 progress: progress / 100,
                 progressBarColor: getProgressColor(progress.toDouble(), muted: false),
-                backgroundColor: Palette.bgLight.primary,
+                backgroundColor: AppTheme.of(context).palette.foreground.tertiary,
               ),
             ),
           ] 

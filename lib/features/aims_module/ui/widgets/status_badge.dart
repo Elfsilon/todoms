@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/palette.dart';
 
 class StatusBadge extends StatelessWidget {
@@ -16,11 +17,11 @@ class StatusBadge extends StatelessWidget {
       height: 36,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(50)),
-        color: status ? Palette.green.muted : Palette.bgDark.muted,
+        color: status ? AppTheme.of(context).palette.custom.green.muted : Palette.bgDark.muted,
       ),
       child: status ? Icon(
         Icons.done_rounded, 
-        color: Palette.green.primary
+        color: AppTheme.of(context).palette.custom.green.primary
       ) : null,
     );
   }

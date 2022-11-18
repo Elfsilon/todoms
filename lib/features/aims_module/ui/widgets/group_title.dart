@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/widgets/label.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
 import 'package:todoms/shared/utils/constants/date_time.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
-import 'package:todoms/shared/utils/get_progress_color.dart';
 
 class GroupTitile extends StatelessWidget {
   const GroupTitile({
@@ -40,7 +39,7 @@ class GroupTitile extends StatelessWidget {
         children: [
           const SizedBox(width: 16),
           Text(_formatDeadline(groupDeadline), style: TextStyle(
-            color: Palette.fgLight.primary,
+            color: AppTheme.of(context).palette.foreground.primary,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           )),

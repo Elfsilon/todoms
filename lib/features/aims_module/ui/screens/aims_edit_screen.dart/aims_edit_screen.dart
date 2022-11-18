@@ -10,7 +10,7 @@ import 'package:todoms/features/aims_module/ui/widgets/edit_dialog/edit_category
 import 'package:todoms/features/aims_module/ui/widgets/edit_dialog/edit_deadline_dialog.dart';
 import 'package:todoms/features/aims_module/ui/widgets/edit_dialog/edit_text_dialog.dart';
 import 'package:todoms/features/aims_module/ui/widgets/pushed_screen_template.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class AimEditScreen extends ConsumerWidget {
   const AimEditScreen({
@@ -81,7 +81,7 @@ class AimEditScreen extends ConsumerWidget {
         ActionButton(
           autoPop: false,
           label: data.imrotant != null && data.imrotant! ? "Important" : "Common", 
-          fillColor: data.imrotant != null && data.imrotant! ? Palette.green : Palette.crimsone,
+          fillColor: data.imrotant != null && data.imrotant! ? AppTheme.of(context).palette.custom.green : AppTheme.of(context).palette.custom.crimsone,
           icon: data.imrotant != null && data.imrotant! ? Icons.keyboard_double_arrow_up_rounded : Icons.keyboard_double_arrow_down_rounded, 
           onAction: () {
             if (data.imrotant != null) {

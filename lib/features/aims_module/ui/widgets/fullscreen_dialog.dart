@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/shared/models/custom_color.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class FullscreenDialog extends StatelessWidget {
   const FullscreenDialog({
@@ -52,7 +52,7 @@ class FullscreenDialog extends StatelessWidget {
                 onPressed: () => _handleAction(context), 
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(color.primary),
-                  overlayColor: MaterialStateProperty.all(Palette.crimsone.primary),
+                  overlayColor: MaterialStateProperty.all(AppTheme.of(context).palette.custom.crimsone.primary),
                 ),
                 child: Text(actionName),
               ),
@@ -62,7 +62,7 @@ class FullscreenDialog extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(color.muted),
                   foregroundColor: MaterialStateProperty.all(color.primary),
-                  overlayColor: MaterialStateProperty.all(Palette.crimsone.muted),
+                  overlayColor: MaterialStateProperty.all(AppTheme.of(context).palette.custom.crimsone.muted),
                 ),
                 child: const Text("Close"),
               ),

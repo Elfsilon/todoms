@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/widgets/status_badge.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class SubissueWidget extends StatelessWidget {
   const SubissueWidget({
@@ -18,7 +18,7 @@ class SubissueWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: Constants.s8, vertical: Constants.s12),
       decoration: BoxDecoration(
-        color: Palette.bgDark.primary,
+        color: AppTheme.of(context).palette.background.primary,
       ),
       child: Row(
         children: [
@@ -29,7 +29,7 @@ class SubissueWidget extends StatelessWidget {
               width: 10,
               height: 10,
               decoration: BoxDecoration(
-                color: Palette.fgDark.primary,
+                color: AppTheme.of(context).palette.foreground.tertiary,
                 shape: BoxShape.circle,
               ),
             ),
@@ -39,7 +39,7 @@ class SubissueWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(title, style: TextStyle(
-                  color: Palette.fgLight.primary,
+                  color: AppTheme.of(context).palette.foreground.primary,
                   fontSize: 13,
                 )),
               ],

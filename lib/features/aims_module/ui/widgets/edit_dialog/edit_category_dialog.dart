@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/models/category.dart';
 import 'package:todoms/features/aims_module/ui/widgets/edit_dialog/edit_dialog.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/categories.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 void showEditCategoryDialog(BuildContext context, {
   required Category initialValue, 
@@ -71,7 +71,7 @@ class _EditCategoryDialogState extends State<EditCategoryDialog> {
         width: double.infinity,
         height: 160,
         decoration: BoxDecoration(
-          color: Palette.bgDark.primary,
+          color: AppTheme.of(context).palette.background.primary,
           borderRadius: Constants.borderRadius12,
         ),
         child: GridView.count(
@@ -109,7 +109,7 @@ class _IconWidget extends StatelessWidget {
       child: Icon(
         category.icon, 
         size: Constants.s32,
-        color: picked ? category.color.primary : Palette.fgDark.primary
+        color: picked ? category.color.primary : AppTheme.of(context).palette.foreground.tertiary
       ),
     );
   }

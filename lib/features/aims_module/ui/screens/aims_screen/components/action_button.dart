@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/shared/models/custom_color.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton({
@@ -23,7 +23,7 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = fillColor ?? Palette.crimsone;
+    final color = fillColor ?? AppTheme.of(context).palette.custom.crimsone;
 
     return SizedBox(
       height: 60,
@@ -31,8 +31,8 @@ class ActionButton extends StatelessWidget {
       child: TextButton.icon(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(filled ? color.muted : Colors.transparent),
-          overlayColor: MaterialStateProperty.all(filled ? color.muted : Palette.fgDark.primary),
-          foregroundColor: MaterialStateProperty.all(filled ? color.primary : Palette.fgMid.primary),
+          overlayColor: MaterialStateProperty.all(filled ? color.muted : AppTheme.of(context).palette.foreground.tertiary),
+          foregroundColor: MaterialStateProperty.all(filled ? color.primary : AppTheme.of(context).palette.foreground.secondary),
           shape: MaterialStateProperty.all(const RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           )),

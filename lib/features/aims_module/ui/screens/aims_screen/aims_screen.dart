@@ -14,8 +14,8 @@ import 'package:todoms/shared/interfaces/common.dart';
 import 'package:todoms/shared/models/group.dart';
 import 'package:todoms/shared/models/group_list.dart';
 import 'package:todoms/shared/router/app_router.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 import 'package:vibration/vibration.dart';
 
 class DecomposedGroups<T extends Groupable> {
@@ -76,7 +76,7 @@ class AimsScreenState extends ConsumerState<AimsScreen> {
         title: "Are you sure?", 
         actionName: "Delete", 
         description: "It will be impossible to restore deleted data",
-        color: Palette.roseRed, 
+        color: AppTheme.of(context).palette.custom.roseRed, 
         onAction: () => controller.delete(id),
       ),
     );
@@ -90,7 +90,7 @@ class AimsScreenState extends ConsumerState<AimsScreen> {
         title: "Are you sure?", 
         actionName: "Delete", 
         description: "It will be impossible to restore deleted data",
-        color: Palette.roseRed, 
+        color: AppTheme.of(context).palette.custom.roseRed, 
         onAction: () => controller.deleteStep(aimId, stepId),
       ),
     );
@@ -205,7 +205,7 @@ class AimsScreenState extends ConsumerState<AimsScreen> {
     return AppStateSaver(
       provider: aimControllerProvider,
       child: Scaffold(
-        backgroundColor: Palette.bgDark.primary,
+        backgroundColor: AppTheme.of(context).palette.background.primary,
         appBar: CustomAppBar(
           height: Constants.appBarHeight, 
           title: "Aims",
@@ -214,14 +214,14 @@ class AimsScreenState extends ConsumerState<AimsScreen> {
               setState(() => showCompleted = !showCompleted);
             },
             child: showCompleted 
-              ? const Label(
+              ? Label(
                 prefixIcon: Icons.history_rounded,
-                color: Palette.flameOrange,
+                color: AppTheme.of(context).palette.custom.flameOrange,
                 size: LabelSize.large,
               ) 
-              : const Label(
+              : Label(
                 prefixIcon: Icons.today_rounded,
-                color: Palette.merigold,
+                color: AppTheme.of(context).palette.custom.merigold,
                 size: LabelSize.large,
               ),
           ),
@@ -243,9 +243,9 @@ class AimsScreenState extends ConsumerState<AimsScreen> {
               right: Constants.s16,
               bottom: Constants.s16,
               child: FloatingActionButton(
-                backgroundColor: Palette.merigold.primary,
+                backgroundColor: AppTheme.of(context).palette.custom.merigold.primary,
                 onPressed: () => addAim(null),
-                child: Icon(Icons.add, color: Palette.fgLight.primary),
+                child: Icon(Icons.add, color: AppTheme.of(context).palette.foreground.primary),
               ),
             ),
           ],

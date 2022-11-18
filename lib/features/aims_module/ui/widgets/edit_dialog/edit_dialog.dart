@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 class EditDialog extends StatelessWidget {
   const EditDialog({
@@ -24,7 +24,7 @@ class EditDialog extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         decoration: BoxDecoration(
-          color: Palette.bgMid.primary,
+          color: AppTheme.of(context).palette.background.secondary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(

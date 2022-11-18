@@ -4,8 +4,8 @@ import 'package:todoms/features/aims_module/ui/widgets/label.dart';
 import 'package:todoms/features/aims_module/ui/widgets/sign.dart';
 import 'package:todoms/features/aims_module/ui/widgets/status_badge.dart';
 import 'package:todoms/features/aims_module/ui/widgets/with_progress_bar.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
 
 class IssueWidget extends StatelessWidget {
   const IssueWidget({
@@ -31,8 +31,8 @@ class IssueWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Constants.s12),
       child: WithProgressBar(
         progress: progress ?? 0,
-        progressBarColor: Palette.bgLight.primary,
-        backgroundColor: Palette.bgMid.primary,
+        progressBarColor: AppTheme.of(context).palette.foreground.tertiary,
+        backgroundColor: AppTheme.of(context).palette.background.secondary,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Constants.s12, vertical: Constants.s12),
           child: Row(
@@ -48,7 +48,7 @@ class IssueWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(title, style: TextStyle(
-                      color: Palette.fgLight.primary,
+                      color: AppTheme.of(context).palette.foreground.primary,
                       fontSize: 13,
                     )),
                     const SizedBox(height: 4),

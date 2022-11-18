@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/shared/models/custom_color.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 
 enum LabelSize {
   small,
@@ -32,7 +32,7 @@ class Label extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usedColor = color ?? Palette.fgMid;
+    final usedColor = color ?? AppTheme.of(context).palette.greywash.primary;
 
     final double iconSize = _setSizes(12, 20, 24);
     final double padding = _setSizes(2, 6, 8);

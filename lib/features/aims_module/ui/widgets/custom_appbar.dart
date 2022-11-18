@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/create_box_shadow.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -13,7 +13,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
   final String title;
   final Widget? child;
-
   @override
   Size get preferredSize => Size.fromHeight(height);
 
@@ -25,8 +24,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       alignment: Alignment.center,
       padding: const EdgeInsets.fromLTRB(24, 25, 24, 0),
       decoration: BoxDecoration(
-        color: Palette.bgDark.primary,
-        boxShadow: createBoxShadow(Palette.bgLight),
+        color: AppTheme.of(context).palette.background.primary, // bgDark
+        boxShadow: createBoxShadow(AppTheme.of(context).palette.shadow.primary),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

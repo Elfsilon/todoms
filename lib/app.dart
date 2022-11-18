@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todoms/features/aims_module/ui/screens/aims_screen/aims_screen.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/constants/constants.dart';
-import 'package:todoms/shared/utils/constants/palette.dart';
+import 'package:todoms/shared/theme/app_theme.dart';
 import 'package:todoms/shared/utils/get_swatch.dart';
 
 class TodomsApp extends StatelessWidget {
@@ -12,25 +13,25 @@ class TodomsApp extends StatelessWidget {
     return MaterialApp(
       title: 'Todoms',
       theme: ThemeData(
-        primarySwatch: MaterialColor(500, getSwatch(Palette.merigold.primary)),
+        primarySwatch: MaterialColor(500, getSwatch(AppTheme.of(context).palette.custom.merigold.primary)),
         brightness: Brightness.dark,
-        backgroundColor: Palette.bgMid.primary,
+        backgroundColor: AppTheme.of(context).palette.background.secondary,
         fontFamily: "Nunito",
 
         // Text theme
         textTheme: TextTheme(
           bodySmall: TextStyle(
-            color: Palette.fgMid.primary,
+            color: AppTheme.of(context).palette.foreground.secondary,
           ),
         ),
 
         inputDecorationTheme: InputDecorationTheme(
           contentPadding: const EdgeInsets.symmetric(horizontal: Constants.s16),
-          prefixIconColor: Palette.fgMid.primary,
-          suffixIconColor: Palette.fgMid.primary,
+          prefixIconColor: AppTheme.of(context).palette.foreground.secondary,
+          suffixIconColor: AppTheme.of(context).palette.foreground.secondary,
           filled: true,
-          fillColor: Palette.bgDark.primary,
-          errorStyle: TextStyle(color: Palette.roseRed.primary),
+          fillColor: AppTheme.of(context).palette.background.primary,
+          errorStyle: TextStyle(color: AppTheme.of(context).palette.custom.roseRed.primary),
           border: const OutlineInputBorder(
             borderRadius: Constants.borderRadius16,
             borderSide: BorderSide(
@@ -46,21 +47,21 @@ class TodomsApp extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: Constants.borderRadius16,
             borderSide: BorderSide(
-              color: Palette.merigold.primary,
+              color: AppTheme.of(context).palette.custom.merigold.primary,
               width: 2,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: Constants.borderRadius16,
             borderSide: BorderSide(
-              color: Palette.roseRed.primary,
+              color: AppTheme.of(context).palette.custom.roseRed.primary,
               width: 2,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: Constants.borderRadius16,
             borderSide: BorderSide(
-              color: Palette.roseRed.primary,
+              color: AppTheme.of(context).palette.custom.roseRed.primary,
               width: 2,
             ),
           ),
@@ -69,10 +70,10 @@ class TodomsApp extends StatelessWidget {
         // Button themes
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Palette.merigold.muted),
+            backgroundColor: MaterialStateProperty.all(AppTheme.of(context).palette.custom.merigold.muted),
             shadowColor: MaterialStateProperty.all(Colors.transparent),
-            overlayColor: MaterialStateProperty.all(Palette.bumblebee.muted),
-            foregroundColor: MaterialStateProperty.all(Palette.merigold.primary),
+            overlayColor: MaterialStateProperty.all(AppTheme.of(context).palette.custom.bumblebee.muted),
+            foregroundColor: MaterialStateProperty.all(AppTheme.of(context).palette.custom.merigold.primary),
             shape: MaterialStateProperty.all(const RoundedRectangleBorder(
               borderRadius: Constants.borderRadius16,
             )),
@@ -82,15 +83,15 @@ class TodomsApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-              if (states.contains(MaterialState.disabled)) return Palette.bgLight.primary;
-              return Palette.merigold.primary;
+              if (states.contains(MaterialState.disabled)) return AppTheme.of(context).palette.foreground.tertiary;
+              return AppTheme.of(context).palette.custom.merigold.primary;
             }),
             foregroundColor: MaterialStateProperty.resolveWith<Color>((states) {
-              if (states.contains(MaterialState.disabled)) return Palette.fgMid.primary;
-              return Palette.fgLight.primary;
+              if (states.contains(MaterialState.disabled)) return AppTheme.of(context).palette.foreground.secondary;
+              return AppTheme.of(context).palette.foreground.primary;
             }),
             shadowColor: MaterialStateProperty.all(Colors.transparent),
-            overlayColor: MaterialStateProperty.all(Palette.bumblebee.primary),
+            overlayColor: MaterialStateProperty.all(AppTheme.of(context).palette.custom.bumblebee.primary),
             shape: MaterialStateProperty.all(const RoundedRectangleBorder(
               borderRadius: Constants.borderRadius16,
             )),

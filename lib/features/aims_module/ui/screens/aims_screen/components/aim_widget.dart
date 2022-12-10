@@ -27,8 +27,24 @@ class AimWidget extends StatefulWidget {
   State<AimWidget> createState() => _AimWidgetState();
 }
 
-class _AimWidgetState extends State<AimWidget> {
+class _AimWidgetState extends State<AimWidget> with TickerProviderStateMixin {
+  late AnimationController animationController = AnimationController(
+    duration: const Duration(milliseconds: 140),
+    vsync: this,
+  );
+  late CurvedAnimation animation = CurvedAnimation(
+    parent: animationController,
+    curve: Curves.easeIn,
+  );
   bool expanded = false;
+
+  void animate() {
+    if (expanded) {
+      animationController.reverse();
+    } else {
+      animationController.forward();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +54,12 @@ class _AimWidgetState extends State<AimWidget> {
         GestureDetector(
           onTap: () => widget.onAimTap(widget.aim.id, !widget.aim.done),
           onDoubleTap: () => widget.onAimDoubleTap(widget.aim.id),
-          onHorizontalDragStart: (details) => setState(() {
-            expanded = !expanded;
-          }),
+          onHorizontalDragStart: (details) {
+            animate();
+            setState(() {
+              expanded = !expanded;
+            });
+          },
           onLongPress: () => widget.onAimLongPress(widget.aim.id),
           child: IssueWidget(
             progress: widget.aim.progress / 100,
@@ -48,40 +67,60 @@ class _AimWidgetState extends State<AimWidget> {
             category: widget.aim.category,
             important: widget.aim.imrotant,
             status: widget.aim.done,
-            labels:  [
+            labels: [
               Label(
                 title: "${widget.aim.progress}%",
-                color: widget.aim.progress < 40 
-                  ? AppTheme.of(context).palette.custom.crimsone 
-                  : widget.aim.progress < 80 
-                    ? AppTheme.of(context).palette.custom.merigold
-                    : widget.aim.category.color,
+                color: widget.aim.progress < 40
+                    ? AppTheme.of(context).palette.custom.crimsone
+                    : widget.aim.progress < 80
+                        ? AppTheme.of(context).palette.custom.merigold
+                        : widget.aim.category.color,
               ),
               Label(
-                title: widget.aim.priority.toString(),
-                suffixIcon: Icons.flag_rounded,
-                color: widget.aim.category.color
-              ),
+                  title: widget.aim.priority.toString(),
+                  suffixIcon: Icons.flag_rounded,
+                  color: widget.aim.category.color),
               Label(
-                title: widget.aim.category.name,
-                color: widget.aim.category.color
-              ),
-              if (widget.aim.steps.isNotEmpty) Label(
-                title: "${widget.aim.steps.length} step${widget.aim.steps.length > 1 ? 's' : ''}",
-                prefixIcon: Icons.check_circle_outline_rounded,
-              ),
+                  title: widget.aim.category.name,
+                  color: widget.aim.category.color),
+              if (widget.aim.steps.isNotEmpty)
+                Label(
+                  title:
+                      "${widget.aim.steps.length} step${widget.aim.steps.length > 1 ? 's' : ''}",
+                  prefixIcon: Icons.check_circle_outline_rounded,
+                ),
             ],
           ),
         ),
-        if (expanded) ...widget.aim.steps.map((step) => GestureDetector(
-          onTap: () => widget.onAimStepTap(widget.aim.id, step.localId, !step.done),
-          onLongPress: () => widget.onAimStepLongPress(widget.aim.id, step.localId),
-          child: SubissueWidget(
-            title: step.title,
-            status: step.done,
+        SizeTransition(
+          sizeFactor: animation,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: widget.aim.steps
+                .map(
+                  (step) => GestureDetector(
+                    onTap: () => widget.onAimStepTap(
+                        widget.aim.id, step.localId, !step.done),
+                    onLongPress: () =>
+                        widget.onAimStepLongPress(widget.aim.id, step.localId),
+                    child: SubissueWidget(
+                      title: step.title,
+                      status: step.done,
+                    ),
+                  ),
+                )
+                .toList(),
           ),
-        ),
-        ),
+        )
+        // if (expanded) ...widget.aim.steps.map((step) => GestureDetector(
+        //   onTap: () => widget.onAimStepTap(widget.aim.id, step.localId, !step.done),
+        //   onLongPress: () => widget.onAimStepLongPress(widget.aim.id, step.localId),
+        //   child: SubissueWidget(
+        //     title: step.title,
+        //     status: step.done,
+        //   ),
+        // ),
+        // ),
       ],
     );
   }

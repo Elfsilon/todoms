@@ -9,8 +9,7 @@ class WithProgressBar extends StatelessWidget {
     required this.progressBarColor,
     required this.backgroundColor,
     required this.child,
-  }): 
-    assert(progress <= 1.0 && progress >= 0.0);
+  }) : assert(progress <= 1.0 && progress >= 0.0);
 
   final double progress;
   final Color progressBarColor;
@@ -20,6 +19,7 @@ class WithProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final offset = MediaQuery.of(context).size.width * (1.0 - progress);
+
     return Stack(
       children: [
         Positioned.fill(
@@ -32,12 +32,14 @@ class WithProgressBar extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 350),
           left: 0,
           top: 0,
           bottom: 0,
           right: offset,
           child: SizedBox(
+            width: 20,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: progressBarColor,

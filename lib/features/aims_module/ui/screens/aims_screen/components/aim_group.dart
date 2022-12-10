@@ -35,74 +35,93 @@ class AimGroup extends StatefulWidget {
   State<AimGroup> createState() => _AimGroupState();
 }
 
-class _AimGroupState extends State<AimGroup> {
+class _AimGroupState extends State<AimGroup> with TickerProviderStateMixin {
+  late AnimationController animationController = AnimationController(
+    duration: const Duration(milliseconds: 200),
+    vsync: this,
+  )..forward();
   bool expanded = true;
 
+  void animate() {
+    if (expanded) {
+      animationController.reverse();
+    } else {
+      animationController.forward();
+    }
+  }
+
   void expand() {
+    animate();
     setState(() {
       expanded = !expanded;
     });
   }
 
-  int get progress 
-    => widget.items.fold(0, (acc, aim) => acc + aim.progress) ~/ widget.items.length;
+  int get progress =>
+      widget.items.fold(0, (acc, aim) => acc + aim.progress) ~/
+      widget.items.length;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Column(mainAxisSize: MainAxisSize.min, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onDoubleTap: () => widget.onDoubleTapHeader(widget.deadline),
-                  child: GroupTitile(
-                    today: widget.today,
-                    groupDeadline: widget.deadline, 
-                  ),
-                ),
-                GestureDetector(
-                  onTap: expand,
-                  child: SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: Icon(
-                      expanded ? Icons.expand_less_rounded : Icons.expand_more_rounded, 
-                      size: Constants.s20, 
-                      color: AppTheme.of(context).palette.foreground.secondary
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Constants.s16),
-              child: ProgressBar(
-                progress: progress / 100,
-                progressBarColor: getProgressColor(progress.toDouble(), muted: false),
-                backgroundColor: AppTheme.of(context).palette.foreground.tertiary,
+            GestureDetector(
+              onDoubleTap: () => widget.onDoubleTapHeader(widget.deadline),
+              child: GroupTitile(
+                today: widget.today,
+                groupDeadline: widget.deadline,
               ),
             ),
-          ] 
-        ),
-        const SizedBox(height: Constants.s12),
-        if (expanded) ...widget.items.map((aim) => Padding(
-            padding: const EdgeInsets.only(bottom: Constants.s8),
-            child: AimWidget(
-              aim: aim,
-              onAimTap: widget.onTapAim,
-              onAimDoubleTap: widget.onDoubleTapAim,
-              onAimLongPress: widget.onLongPressAim,
-              onAimStepTap: widget.onTapAimStep,
-              onAimStepLongPress: widget.onLongPressAimStep,
+            GestureDetector(
+              onTap: expand,
+              child: SizedBox(
+                width: 40,
+                height: 40,
+                child: Icon(
+                    expanded
+                        ? Icons.expand_less_rounded
+                        : Icons.expand_more_rounded,
+                    size: Constants.s20,
+                    color: AppTheme.of(context).palette.foreground.secondary),
+              ),
             ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Constants.s16),
+          child: ProgressBar(
+            progress: progress / 100,
+            progressBarColor:
+                getProgressColor(progress.toDouble(), muted: false),
+            backgroundColor: AppTheme.of(context).palette.foreground.tertiary,
           ),
         ),
-      ]
-    );
+      ]),
+      const SizedBox(height: Constants.s12),
+      SizeTransition(
+        sizeFactor: animationController,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: widget.items
+              .map(
+                (aim) => Padding(
+                  padding: const EdgeInsets.only(bottom: Constants.s8),
+                  child: AimWidget(
+                    aim: aim,
+                    onAimTap: widget.onTapAim,
+                    onAimDoubleTap: widget.onDoubleTapAim,
+                    onAimLongPress: widget.onLongPressAim,
+                    onAimStepTap: widget.onTapAimStep,
+                    onAimStepLongPress: widget.onLongPressAimStep,
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    ]);
   }
 }

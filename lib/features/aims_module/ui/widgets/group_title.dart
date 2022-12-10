@@ -24,8 +24,8 @@ class GroupTitile extends StatelessWidget {
   String _restOfDays(DateTime today, DateTime other) {
     final daysLeft = other.difference(today).inDays;
     if (daysLeft < 0) return "Completed";
-    if (daysLeft == 0) return "Today";
-    if (daysLeft == 1) return "Tomorrow";
+    if (daysLeft == 0) return "Deadline today";
+    if (daysLeft == 1) return "Deadline tomorrow";
     return "$daysLeft days left";
   }
 
@@ -38,11 +38,12 @@ class GroupTitile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(width: 16),
-          Text(_formatDeadline(groupDeadline), style: TextStyle(
-            color: AppTheme.of(context).palette.foreground.primary,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          )),
+          Text(_formatDeadline(groupDeadline),
+              style: TextStyle(
+                color: AppTheme.of(context).palette.foreground.primary,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              )),
           const SizedBox(width: Constants.s2),
           Label(
             title: _restOfDays(today, groupDeadline),

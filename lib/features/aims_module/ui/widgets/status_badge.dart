@@ -10,19 +10,28 @@ class StatusBadge extends StatelessWidget {
 
   final bool status;
 
+  Duration get animationDuration => const Duration(milliseconds: 200);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: animationDuration,
+      curve: Curves.easeIn,
       width: 36,
       height: 36,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(50)),
-        color: status ? AppTheme.of(context).palette.custom.green.muted : Palette.bgDark.muted,
+        color: status
+            ? AppTheme.of(context).palette.custom.green.muted
+            : Palette.bgDark.muted,
       ),
-      child: status ? Icon(
-        Icons.done_rounded, 
-        color: AppTheme.of(context).palette.custom.green.primary
-      ) : null,
+      child: AnimatedOpacity(
+        opacity: status ? 1.0 : 0.0,
+        curve: Curves.easeIn,
+        duration: animationDuration,
+        child: Icon(Icons.done_rounded,
+            color: AppTheme.of(context).palette.custom.green.primary),
+      ),
     );
   }
 }
